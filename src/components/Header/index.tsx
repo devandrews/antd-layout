@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Layout } from "antd";
 
@@ -6,11 +6,12 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 
 import "../../global.css";
 import "./styles.css";
+import MenuContext from "../../contexts/MenuContext";
 
 const { Header: Topbar } = Layout;
 
 export default function Header() {
-  const collapsed = true;
+  const { collapsed, setCollapsed } = useContext(MenuContext);
 
   return (
     <div>
@@ -19,7 +20,7 @@ export default function Header() {
           collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
             className: "trigger",
-            onClick: () => {},
+            onClick: () => setCollapsed(!collapsed),
           }
         )}
       </Topbar>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Layout, Menu } from "antd";
 import {
@@ -8,11 +8,12 @@ import {
 } from "@ant-design/icons";
 
 import "./styles.css";
+import MenuContext from "../../contexts/MenuContext";
 
 const { Sider } = Layout;
 
 export default function Sidebar() {
-  const collapsed = false;
+  const { collapsed } = useContext(MenuContext);
 
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>

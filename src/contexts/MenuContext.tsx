@@ -6,20 +6,14 @@ import {
   useState,
 } from "react";
 
-interface MenuTypes {
-  collapsed: boolean;
-}
-
 interface PropsMenuContext {
-  state: MenuTypes;
-  setState: Dispatch<SetStateAction<MenuTypes>>;
+  collapsed: boolean;
+  setCollapsed: Dispatch<SetStateAction<boolean>>;
 }
 
 const DEFAULT_VALUE = {
-  state: {
-    collapsed: true,
-  },
-  setState: () => {},
+  collapsed: true,
+  setCollapsed: () => {},
 };
 
 const MenuContext = createContext<PropsMenuContext>(DEFAULT_VALUE);
@@ -29,13 +23,13 @@ interface PropsMenuContextProvider {
 }
 
 function MenuContextProvider({ children }: PropsMenuContextProvider) {
-  const [state, setState] = useState(DEFAULT_VALUE.state);
+  const [collapsed, setCollapsed] = useState(DEFAULT_VALUE.collapsed);
 
   return (
     <MenuContext.Provider
       value={{
-        state,
-        setState,
+        collapsed,
+        setCollapsed,
       }}
     >
       {children}
